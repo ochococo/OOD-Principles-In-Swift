@@ -11,11 +11,11 @@ A short cheat-sheet with Xcode 6 Playground ([OOD-Principles-In-Swift.playground
 
 ## SOLID
 
-* [Single Responsibility Principle](#The Single Responsibility Principle)
-* [Open Closed Principle](#The Open Closed Principle)
-* [Liskov Substitution Principle](#The Liskov Substitution Principle)
-* [Interface Segregation Principle](#The Interface Segregation Principle)
-* [Dependency Inversion Principle](#The Dependency Inversion Principle)
+* [The Single Responsibility Principle](#the-single-responsibility-principle)
+* [The Open Closed Principle](#the-open-closed-principle)
+* [The Liskov Substitution Principle](#the-liskov-substitution-principle)
+* [The Interface Segregation Principle](#the-interface-segregation-principle)
+* [The Dependency Inversion Principle](#the-dependency-inversion-principle)
 
 
 #The Single Responsibility Principle
