@@ -1,4 +1,4 @@
-#The Interface Segregation Principle
+#🚧 The Interface Segregation Principle
 
->	Make fine grained interfaces that are client specific.
+> Make fine grained interfaces that are client specific.
 

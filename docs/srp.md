@@ -1,6 +1,6 @@
-#The Single Responsibility Principle
+#🔐 The Single Responsibility Principle
 
->	A class should have one, and only one, reason to change.
+> A class should have one, and only one, reason to change.
 
 Example:
 
@@ -14,7 +14,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state.
-class Door:CanBeOpened,CanBeClosed {
+class Door : CanBeOpened,CanBeClosed {
     private var stateOpen = false
 
     func open() {
@@ -30,7 +30,7 @@ class Door:CanBeOpened,CanBeClosed {
 class DoorOpener {
     let door:CanBeOpened
 
-    init(door:CanBeOpened) {
+    init(door: CanBeOpened) {
         self.door = door
     }
 
@@ -43,7 +43,7 @@ class DoorOpener {
 class DoorCloser {
     let door:CanBeClosed
 
-    init(door:CanBeClosed) {
+    init(door: CanBeClosed) {
         self.door = door
     }
 

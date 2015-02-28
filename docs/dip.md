@@ -1,5 +1,5 @@
-#The Dependency Inversion Principle
+#🚧 The Dependency Inversion Principle
 
->	Depend on abstractions, not on concretions.
+> Depend on abstractions, not on concretions.
 
 

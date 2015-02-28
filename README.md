@@ -18,9 +18,9 @@ A short cheat-sheet with Xcode 6.3 Playground ([OOD-Principles-In-Swift.playgrou
 * [The Dependency Inversion Principle](#the-dependency-inversion-principle)
 
 
-#The Single Responsibility Principle
+#🔐 The Single Responsibility Principle
 
->	A class should have one, and only one, reason to change.
+> A class should have one, and only one, reason to change.
 
 Example:
 
@@ -34,7 +34,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state.
-class Door:CanBeOpened,CanBeClosed {
+class Door : CanBeOpened,CanBeClosed {
     private var stateOpen = false
 
     func open() {
@@ -50,7 +50,7 @@ class Door:CanBeOpened,CanBeClosed {
 class DoorOpener {
     let door:CanBeOpened
 
-    init(door:CanBeOpened) {
+    init(door: CanBeOpened) {
         self.door = door
     }
 
@@ -63,7 +63,7 @@ class DoorOpener {
 class DoorCloser {
     let door:CanBeClosed
 
-    init(door:CanBeClosed) {
+    init(door: CanBeClosed) {
         self.door = door
     }
 
@@ -79,21 +79,21 @@ doorOpener.execute()
 doorCloser.execute()
 ```
 
-#The Open Closed Principle
+#🚧 The Open Closed Principle
 
->	You should be able to extend a classes behavior, without modifying it.
+> You should be able to extend a classes behavior, without modifying it.
 
-#The Liskov Substitution Principle
+#🚧 The Liskov Substitution Principle
 
->	Derived classes must be substitutable for their base classes.
+> Derived classes must be substitutable for their base classes.
 
-#The Interface Segregation Principle
+#🚧 The Interface Segregation Principle
 
->	Make fine grained interfaces that are client specific.
+> Make fine grained interfaces that are client specific.
 
-#The Dependency Inversion Principle
+#🚧 The Dependency Inversion Principle
 
->	Depend on abstractions, not on concretions.
+> Depend on abstractions, not on concretions.
 
 
 Info
