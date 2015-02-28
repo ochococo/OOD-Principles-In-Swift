@@ -23,6 +23,63 @@ A short cheat-sheet with Xcode 6 Playground ([OOD-Principles-In-Swift.playground
 >	A class should have one, and only one, reason to change.
 >**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
+Example:
+
+```swift
+protocol CanBeOpened {
+    func open()
+}
+
+protocol CanBeClosed {
+    func close()
+}
+
+// I'm the door. I have an encapsulated state.
+class Door:CanBeOpened,CanBeClosed {
+    private var stateOpen = false
+
+    func open() {
+        stateOpen = true
+    }
+
+    func close() {
+        stateOpen = false
+    }
+}
+
+// I'm only responsible for opening, no idea what's inside or how to close.
+class DoorOpener {
+    let door:CanBeOpened
+
+    init(door:CanBeOpened) {
+        self.door = door
+    }
+
+    func execute() {
+        door.open()
+    }
+}
+
+// I'm only responsible for closing, no idea what's inside or how to open.
+class DoorCloser {
+    let door:CanBeClosed
+
+    init(door:CanBeClosed) {
+        self.door = door
+    }
+
+    func execute() {
+        door.close()
+    }
+}
+
+let door = Door()
+let doorOpener = DoorOpener(door: door)
+let doorCloser = DoorCloser(door: door)
+doorOpener.execute()
+doorCloser.execute()
+```
+
 #The Open Closed Principle
 
 >	You should be able to extend a classes behavior, without modifying it.
