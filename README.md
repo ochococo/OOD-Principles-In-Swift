@@ -3,9 +3,9 @@ import Swift
 import Foundation
 ```
 
-The Principles of OOD implemented in Swift
-==========================================
-A short cheat-sheet with Xcode 6 Playground ([OOD-Principles-In-Swift.playground.zip]()).
+The Principles of OOD implemented in Swift 1.2
+==============================================
+A short cheat-sheet with Xcode 6.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
@@ -21,7 +21,6 @@ A short cheat-sheet with Xcode 6 Playground ([OOD-Principles-In-Swift.playground
 #The Single Responsibility Principle
 
 >	A class should have one, and only one, reason to change.
->**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
 Example:
 
@@ -83,19 +82,25 @@ doorCloser.execute()
 #The Open Closed Principle
 
 >	You should be able to extend a classes behavior, without modifying it.
->**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
 #The Liskov Substitution Principle
 
 >	Derived classes must be substitutable for their base classes.
->**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
 #The Interface Segregation Principle
 
 >	Make fine grained interfaces that are client specific.
->**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
 #The Dependency Inversion Principle
 
 >	Depend on abstractions, not on concretions.
->**Source:** [butunclebob.com](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+
+
+Info
+====
+
+🍺 Playground generated with: [playground](https://github.com/jas/playground) by [@jasonsandmeyer](http://twitter.com/jasonsandmeyer)
+
+📖 Descriptions from: [Uncle Bob](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+
+🚀 How to generate playground (+zip) from this README: [GENERATE.md](https://github.com/ochococo/Design-Patterns-In-Swift/blob/master/GENERATE.md)
