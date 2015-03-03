@@ -1,29 +1,30 @@
 #!/bin/bash
 
-# remove the old .playground
-rm -R ./OOD-Principles-In-Swift.playground
+rm ./contents.swift
 
-cat ./docs/header.md > ./README.md
+rm ./OOD-Principles-In-Swift.playground.zip
 
-cat ./docs/srp.md >> ./README.md
-cat ./docs/ocp.md >> ./README.md
-cat ./docs/lsp.md >> ./README.md
-cat ./docs/isp.md >> ./README.md
-cat ./docs/dip.md >> ./README.md
+cat ./source/header.swift > ./contents.swift
 
-cat ./docs/footer.md >> ./README.md
+cat ./source/srp.swift >> ./contents.swift
+cat ./source/ocp.swift >> ./contents.swift
+cat ./source/lsp.swift >> ./contents.swift
+cat ./source/isp.swift >> ./contents.swift
+cat ./source/dip.swift >> ./contents.swift
 
-# see (https://www.npmjs.org/package/playground) to understand playground executable
-playground ./README.md --platform ios --stylesheet ./stylesheet.css
+cat ./source/footer.swift >> ./contents.swift
 
-# rename readme for new playground
-mv ./README.playground ./OOD-Principles-In-Swift.playground
+cp ./contents.swift ./OOD-Principles-In-Swift.playground/contents.swift
+
+{ rm contents.swift && awk '{gsub("\\*//\\*:", "", $0); print}' > contents.swift; } < contents.swift
+{ rm contents.swift && awk '{gsub("/\\*:", "```\n", $0); print}' > contents.swift; } < contents.swift
+{ rm contents.swift && awk '{gsub("\\*/", "\n```swift", $0); print}' > contents.swift; } < contents.swift
+
+{ rm contents.swift && awk 'NR>1{print buf}{buf = $0}' > contents.swift; } < contents.swift
+
+echo "\`\`\`swift
+$(cat ./contents.swift)" > ./README.md
 
 zip -r -X OOD-Principles-In-Swift.playground.zip ./OOD-Principles-In-Swift.playground
 
-rm -R ./OOD-Principles-In-Swift.playground
-
-# no playground?
-#
-# brew install node
-# npm install -g playground
+rm ./contents.swift

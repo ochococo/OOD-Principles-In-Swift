@@ -1,9 +1,7 @@
-```swift
 import Swift
 import Foundation
 
-```
-
+/*:
 
 The Principles of OOD in Swift 1.2
 ==================================
@@ -20,14 +18,13 @@ A short cheat-sheet with Xcode 6.3 Playground ([OOD-Principles-In-Swift.playgrou
 * [The Interface Segregation Principle](#the-interface-segregation-principle)
 * [The Dependency Inversion Principle](#the-dependency-inversion-principle)
 
-
+*//*:
 # 🔐 The Single Responsibility Principle
 
 A class should have one, and only one, reason to change.
 
 Example:
-
-```swift
+*/
 
 protocol CanBeOpened {
     func open()
@@ -81,29 +78,30 @@ let doorOpener = DoorOpener(door: door)
 let doorCloser = DoorCloser(door: door)
 doorOpener.execute()
 doorCloser.execute()
-```
-
+/*:
 # 🚧 The Open Closed Principle
 
 You should be able to extend a classes behavior, without modifying it.
 
-
+*//*:
 # 🚧 The Liskov Substitution Principle
 
 Derived classes must be substitutable for their base classes.
 
-
+*//*:
 # 🚧 The Interface Segregation Principle
 
 Make fine grained interfaces that are client specific.
 
-
+*//*:
 # 🚧 The Dependency Inversion Principle
 
 Depend on abstractions, not on concretions.
 
-
+*//*:
 Info
 ====
 
 📖 Descriptions from: [Uncle Bob](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+
+*/
