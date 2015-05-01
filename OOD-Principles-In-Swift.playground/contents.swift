@@ -19,8 +19,7 @@ S.O.L.I.D.
 * [The Interface Segregation Principle](#-the-interface-segregation-principle)
 * [The Dependency Inversion Principle](#-the-dependency-inversion-principle)
 
-*/
-/*:
+*//*:
 # 🔐 The Single Responsibility Principle
 
 A class should have one, and only one, reason to change.
@@ -81,7 +80,7 @@ let doorCloser = DoorCloser(door: door)
 doorOpener.execute()
 doorCloser.execute()
 /*:
-# 🚧 The Open Closed Principle
+# ✋ The Open Closed Principle
 
 You should be able to extend a classes behavior, without modifying it.
 
@@ -128,26 +127,22 @@ class RocketLauncher : CanShoot {
 let rocket = RocketLauncher()
 
 weapons = WeaponsComposite([laser, rocket])
-weapons.shoot()
-/*:
+weapons.shoot()/*:
 # 🚧 The Liskov Substitution Principle
 
 Derived classes must be substitutable for their base classes.
 
-*/
-/*:
+*//*:
 # 🚧 The Interface Segregation Principle
 
 Make fine grained interfaces that are client specific.
 
-*/
-/*:
+*//*:
 # 🚧 The Dependency Inversion Principle
 
 Depend on abstractions, not on concretions.
 
-*/
-/*:
+*//*:
 Info
 ====
 
