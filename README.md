@@ -176,7 +176,8 @@ let error:Int? = result.error?.code
 // But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
     requestError.request;
-}```
+}
+```
 
 # 🚧 The Interface Segregation Principle
 
