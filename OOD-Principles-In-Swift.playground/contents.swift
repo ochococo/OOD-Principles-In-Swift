@@ -127,7 +127,8 @@ class RocketLauncher : CanShoot {
 let rocket = RocketLauncher()
 
 weapons = WeaponsComposite([laser, rocket])
-weapons.shoot()/*:
+weapons.shoot()
+/*:
 # 👥 The Liskov Substitution Principle
 
 Derived classes must be substitutable for their base classes.
