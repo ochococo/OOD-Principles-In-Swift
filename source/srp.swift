@@ -15,7 +15,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-class Door : CanBeOpened,CanBeClosed {
+final class PodBayDoor : CanBeOpened, CanBeClosed {
     private var stateOpen = false
 
     func open() {
@@ -53,7 +53,7 @@ class DoorCloser {
     }
 }
 
-let door = Door()
+let door = PodBayDoor()
 let doorOpener = DoorOpener(door: door)
 let doorCloser = DoorCloser(door: door)
 doorOpener.execute()
