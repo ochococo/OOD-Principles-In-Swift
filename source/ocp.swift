@@ -10,14 +10,14 @@ protocol CanShoot {
 }
 
 // I'm a laser beam. I can shoot.
-class LaserBeam : CanShoot {
+final class LaserBeam : CanShoot {
     func shoot() -> String {
         return "Ziiiiiip!"
     }
 }
 
 // I have weapons and trust me I can fire them all at once. Boom! Boom! Boom!
-class WeaponsComposite {
+final class WeaponsComposite {
 
     let weapons:[CanShoot]
 
@@ -37,7 +37,7 @@ weapons.shoot()
 
 // I'm a rocket launcher. I can shoot a rocket.
 // NOTE: To add rocket launcher support I don't need to change anything in existing classes.
-class RocketLauncher : CanShoot {
+final class RocketLauncher : CanShoot {
     func shoot() -> String {
         return "Whoosh!"
     }
