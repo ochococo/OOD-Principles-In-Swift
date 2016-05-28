@@ -1,11 +1,10 @@
 /*:
- # 🚧 The Interface Segregation Principle
+# 🍴 The Interface Segregation Principle
 
- Make fine grained interfaces that are client specific.
-
+Make fine grained interfaces that are client specific.
  */
 
-// I have some landing site.
+// I have a landing site.
 protocol LandingSiteHaving {
     var landingSite: String { get }
 }
@@ -15,7 +14,7 @@ protocol Landing {
     func landOn(on: LandingSiteHaving) -> String
 }
 
-// I can deploy payload.
+// I have payload.
 protocol PayloadHaving {
     var payload: String { get }
 }
@@ -27,12 +26,12 @@ final class InternationalSpaceStation {
     }
 }
 
-// I'm a barge - I can let you land on me (well, you get the idea).
+// I'm a barge - I have landing site (well, you get the idea).
 final class OfCourseIStillLoveYouBarge : LandingSiteHaving {
     let landingSite = "a barge on the Atlantic Ocean"
 }
 
-// I can deploy payload and land on things.
+// I have payload and can land on things having landing site.
 // I'm a very limited Space Vehicle, I know.
 final class SpaceXCRS8 : Landing, PayloadHaving {
 

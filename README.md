@@ -39,7 +39,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-class Door : CanBeOpened,CanBeClosed {
+final class PodBayDoor : CanBeOpened, CanBeClosed {
     private var stateOpen = false
 
     func open() {
@@ -77,7 +77,7 @@ class DoorCloser {
     }
 }
 
-let door = Door()
+let door = PodBayDoor()
 let doorOpener = DoorOpener(door: door)
 let doorCloser = DoorCloser(door: door)
 doorOpener.execute()
@@ -96,14 +96,14 @@ protocol CanShoot {
 }
 
 // I'm a laser beam. I can shoot.
-class LaserBeam : CanShoot {
+final class LaserBeam : CanShoot {
     func shoot() -> String {
         return "Ziiiiiip!"
     }
 }
 
 // I have weapons and trust me I can fire them all at once. Boom! Boom! Boom!
-class WeaponsComposite {
+final class WeaponsComposite {
 
     let weapons:[CanShoot]
 
@@ -123,7 +123,7 @@ weapons.shoot()
 
 // I'm a rocket launcher. I can shoot a rocket.
 // NOTE: To add rocket launcher support I don't need to change anything in existing classes.
-class RocketLauncher : CanShoot {
+final class RocketLauncher : CanShoot {
     func shoot() -> String {
         return "Whoosh!"
     }
@@ -148,7 +148,7 @@ let requestKey:NSString = "NSURLRequestKey"
 class RequestError : NSError {
 
     var request : NSURLRequest? {
-        return self.userInfo?[requestKey] as? NSURLRequest
+        return self.userInfo[requestKey] as? NSURLRequest
     }
 }
 
@@ -180,10 +180,61 @@ if let requestError = result.error as? RequestError {
 }
 ```
 
-# 🚧 The Interface Segregation Principle
+# 🍴 The Interface Segregation Principle
 
 Make fine grained interfaces that are client specific.
+ 
+```swift
 
+// I have a landing site.
+protocol LandingSiteHaving {
+    var landingSite: String { get }
+}
+
+// I can land on LandingSiteHaving objects.
+protocol Landing {
+    func landOn(on: LandingSiteHaving) -> String
+}
+
+// I have payload.
+protocol PayloadHaving {
+    var payload: String { get }
+}
+
+// I can fetch payload from vehicle (ex. via Canadarm).
+final class InternationalSpaceStation {
+    func fetchPayload(vehicle: PayloadHaving) -> String {
+        return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
+    }
+}
+
+// I'm a barge - I have landing site (well, you get the idea).
+final class OfCourseIStillLoveYouBarge : LandingSiteHaving {
+    let landingSite = "a barge on the Atlantic Ocean"
+}
+
+// I have payload and can land on things having landing site.
+// I'm a very limited Space Vehicle, I know.
+final class SpaceXCRS8 : Landing, PayloadHaving {
+
+    let payload = "BEAM and some Cube Sats"
+
+    func landOn(on: LandingSiteHaving) -> String {
+        return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
+    }
+}
+
+// Actors
+let crs8 = SpaceXCRS8()
+let barge = OfCourseIStillLoveYouBarge()
+let spaceStation = InternationalSpaceStation()
+
+// NOTE: Space station has no idea about landing capabilities of SpaceXCRS8.
+spaceStation.fetchPayload(crs8)
+
+// NOTE: CRS8 knows only about the landing site information.
+crs8.landOn(barge)
+```
 
 # 🚧 The Dependency Inversion Principle
 

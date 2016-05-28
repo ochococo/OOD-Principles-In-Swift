@@ -11,7 +11,7 @@ let requestKey:NSString = "NSURLRequestKey"
 class RequestError : NSError {
 
     var request : NSURLRequest? {
-        return self.userInfo?[requestKey] as? NSURLRequest
+        return self.userInfo[requestKey] as? NSURLRequest
     }
 }
 
