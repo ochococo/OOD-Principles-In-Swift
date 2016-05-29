@@ -3,10 +3,10 @@ import Foundation
 
 /*:
 
-The Principles of OOD in Swift 1.2
+The Principles of OOD in Swift 2.2
 ==================================
 
-A short cheat-sheet with Xcode 6.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
+A short cheat-sheet with Xcode 7.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
