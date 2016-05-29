@@ -69,7 +69,8 @@ let door = PodBayDoor()
 // NOTE: Only the `DoorOpener` is responsible for opening the door.
 let doorOpener = DoorOpener(door: door)
 
-// NOTE: If another operation should be made upon closing the door (like switching on the alarm) you don't have to change the `DoorOpener` class.
+// NOTE: If another operation should be made upon closing the door,
+//       like switching on the alarm, you don't have to change the `DoorOpener` class.
 let doorCloser = DoorCloser(door: door)
 
 doorOpener.execute()
