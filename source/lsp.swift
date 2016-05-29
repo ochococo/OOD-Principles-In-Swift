@@ -1,8 +1,9 @@
 /*:
 # 👥 The Liskov Substitution Principle
 
-Derived classes must be substitutable for their base classes.
+Derived classes must be substitutable for their base classes. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
 
+Example:
 */
 
 let requestKey: NSString = "NSURLRequestKey"

@@ -1,7 +1,7 @@
 /*:
 # 🔐 The Single Responsibility Principle
 
-A class should have one, and only one, reason to change.
+A class should have one, and only one, reason to change. ([read more](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
 
 Example:
 */
@@ -60,11 +60,11 @@ class DoorCloser {
 }
 
 let door = PodBayDoor()
-// NOTE: Only the `DoorOpener` is responsible for opening the door.
+// ⚠️ NOTE: Only the `DoorOpener` is responsible for opening the door.
 let doorOpener = DoorOpener(door: door)
 doorOpener.execute()
 
-// NOTE: If another operation should be made upon closing the door,
-//       like switching on the alarm, you don't have to change the `DoorOpener` class.
+// ⚠️NOTE: If another operation should be made upon closing the door,
+//        like switching on the alarm, you don't have to change the `DoorOpener` class.
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()

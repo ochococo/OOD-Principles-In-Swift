@@ -1,7 +1,8 @@
 /*:
+
 Info
 ====
 
-📖 Descriptions from: [Uncle Bob](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+📖 Descriptions from: [The Principles of OOD by Uncle Bob](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
 
 */

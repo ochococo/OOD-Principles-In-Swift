@@ -1,7 +1,9 @@
 /*:
 # 🍴 The Interface Segregation Principle
 
-Make fine grained interfaces that are client specific.
+Make fine grained interfaces that are client specific. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
+
+Example:
  */
 
 // I have a landing site.
@@ -21,6 +23,7 @@ protocol PayloadHaving {
 
 // I can fetch payload from vehicle (ex. via Canadarm).
 final class InternationalSpaceStation {
+    // ⚠️ NOTE: Space station has no idea about landing capabilities of SpaceXCRS8.
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
@@ -37,18 +40,15 @@ final class SpaceXCRS8 : Landing, PayloadHaving {
 
     let payload = "BEAM and some Cube Sats"
 
+    // ⚠️ NOTE: CRS8 knows only about the landing site information.
     func landOn(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
 }
 
-// Actors
 let crs8 = SpaceXCRS8()
 let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
-// NOTE: Space station has no idea about landing capabilities of SpaceXCRS8.
 spaceStation.fetchPayload(crs8)
-
-// NOTE: CRS8 knows only about the landing site information.
 crs8.landOn(barge)
