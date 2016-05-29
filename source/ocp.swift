@@ -17,21 +17,21 @@ final class LaserBeam : CanShoot {
 }
 
 // I have weapons and trust me I can fire them all at once. Boom! Boom! Boom!
-final class WeaponsComposite {
+final class DeathStar {
 
-    let weapons:[CanShoot]
+    let weapons: [CanShoot]
 
-    init(_ weapons:[CanShoot]) {
+    init(_ weapons: [CanShoot]) {
         self.weapons = weapons
     }
 
     func shoot() -> [String] {
-        return weapons.map { $0.shoot() }
+        return weapons.forEach { $0.shoot() }
     }
 }
 
 let laser = LaserBeam()
-var weapons = WeaponsComposite([laser])
+var weapons = DeathStar([laser])
 
 weapons.shoot()
 
@@ -45,5 +45,5 @@ final class RocketLauncher : CanShoot {
 
 let rocket = RocketLauncher()
 
-weapons = WeaponsComposite([laser, rocket])
+weapons = DeathStar([laser, rocket])
 weapons.shoot()

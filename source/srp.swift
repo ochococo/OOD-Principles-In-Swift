@@ -6,51 +6,65 @@ A class should have one, and only one, reason to change.
 Example:
 */
 
-// I'm the door. I have an encapsulated state and you can change it.
-final class PodBayDoor {
+protocol CanBeOpened {
+    func open()
+}
 
-    enum State {
+protocol CanBeClosed {
+    func close()
+}
+
+// I'm the door. I have an encapsulated state and you can change it using methods.
+final class PodBayDoor : CanBeOpened, CanBeClosed {
+
+    private enum State {
         case Open
         case Closed
     }
 
-    var state: State = .Closed
+    private var state: State = .Closed
+
+    func open() {
+        state = .Open
+    }
+
+    func close() {
+        state = .Closed
+    }
 }
 
 // I'm only responsible for opening, no idea what's inside or how to close.
-final class DoorOpener {
-    let door: PodBayDoor
+class DoorOpener {
+    let door:CanBeOpened
 
-    init(door: PodBayDoor) {
+    init(door: CanBeOpened) {
         self.door = door
     }
 
     func execute() {
-        door.state = .Open
+        door.open()
     }
 }
 
 // I'm only responsible for closing, no idea what's inside or how to open.
-final class DoorCloser {
-    let door: PodBayDoor
+class DoorCloser {
+    let door:CanBeClosed
 
-    init(door: PodBayDoor) {
+    init(door: CanBeClosed) {
         self.door = door
     }
 
     func execute() {
-        door.state = .Closed
+        door.close()
     }
 }
 
 let door = PodBayDoor()
-
 // NOTE: Only the `DoorOpener` is responsible for opening the door.
 let doorOpener = DoorOpener(door: door)
+doorOpener.execute()
 
 // NOTE: If another operation should be made upon closing the door,
 //       like switching on the alarm, you don't have to change the `DoorOpener` class.
 let doorCloser = DoorCloser(door: door)
-
-doorOpener.execute()
 doorCloser.execute()
