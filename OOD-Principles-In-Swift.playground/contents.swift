@@ -3,10 +3,10 @@ import Foundation
 
 /*:
 
-The Principles of OOD in Swift 1.2
+The Principles of OOD in Swift 2.2
 ==================================
 
-A short cheat-sheet with Xcode 6.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
+A short cheat-sheet with Xcode 7.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
@@ -27,56 +27,51 @@ A class should have one, and only one, reason to change.
 Example:
 */
 
-protocol CanBeOpened {
-    func open()
-}
+// I'm the door. I have an encapsulated state and you can change it.
+final class PodBayDoor {
 
-protocol CanBeClosed {
-    func close()
-}
-
-// I'm the door. I have an encapsulated state and you can change it using methods.
-final class PodBayDoor : CanBeOpened, CanBeClosed {
-    private var stateOpen = false
-
-    func open() {
-        stateOpen = true
+    enum State {
+        case Open
+        case Closed
     }
 
-    func close() {
-        stateOpen = false
-    }
+    var state: State = .Closed
 }
 
 // I'm only responsible for opening, no idea what's inside or how to close.
-class DoorOpener {
-    let door:CanBeOpened
+final class DoorOpener {
+    let door: PodBayDoor
 
-    init(door: CanBeOpened) {
+    init(door: PodBayDoor) {
         self.door = door
     }
 
     func execute() {
-        door.open()
+        door.state = .Open
     }
 }
 
 // I'm only responsible for closing, no idea what's inside or how to open.
-class DoorCloser {
-    let door:CanBeClosed
+final class DoorCloser {
+    let door: PodBayDoor
 
-    init(door: CanBeClosed) {
+    init(door: PodBayDoor) {
         self.door = door
     }
 
     func execute() {
-        door.close()
+        door.state = .Closed
     }
 }
 
 let door = PodBayDoor()
+
+// NOTE: Only the `DoorOpener` is responsible for opening the door.
 let doorOpener = DoorOpener(door: door)
+
+// NOTE: If another operation should be made upon closing the door (like switching on the alarm) you don't have to change the `DoorOpener` class.
 let doorCloser = DoorCloser(door: door)
+
 doorOpener.execute()
 doorCloser.execute()
 /*:
@@ -135,7 +130,7 @@ Derived classes must be substitutable for their base classes.
 
 */
 
-let requestKey:NSString = "NSURLRequestKey"
+let requestKey: NSString = "NSURLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
 class RequestError : NSError {
@@ -146,26 +141,26 @@ class RequestError : NSError {
 }
 
 // I fail to fetch data and will return RequestError.
-func fetchData(request:NSURLRequest) -> (data:NSData?, error:RequestError?) {
+func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 
-    let userInfo:[NSObject:AnyObject] = [ requestKey : request ]
+    let userInfo: [NSObject:AnyObject] = [ requestKey : request ]
 
-    return (nil, RequestError(domain:"DOMAIN", code: 1, userInfo: userInfo))
+    return (nil, RequestError(domain:"DOMAIN", code:0, userInfo: userInfo))
 }
 
 // I don't know what RequestError is and will fail and return a NSError.
-func willReturnObjectOrError() -> (object:AnyObject?, error:NSError?) {
+func willReturnObjectOrError() -> (object: AnyObject?, error: NSError?) {
 
     let request = NSURLRequest()
     let result = fetchData(request)
 
-    return (result.data , result.error)
+    return (result.data, result.error)
 }
 
 let result = willReturnObjectOrError()
 
 // Ok. This is a perfect NSError instance from my perspective.
-let error:Int? = result.error?.code
+let error: Int? = result.error?.code
 
 // But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
