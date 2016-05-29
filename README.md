@@ -22,6 +22,9 @@ S.O.L.I.D.
 * [The Dependency Inversion Principle](#-the-dependency-inversion-principle)
 
 
+```swift
+```
+
 # 🔐 The Single Responsibility Principle
 
 A class should have one, and only one, reason to change.
