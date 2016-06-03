@@ -23,24 +23,31 @@ protocol PayloadHaving {
 
 // I can fetch payload from vehicle (ex. via Canadarm).
 final class InternationalSpaceStation {
-    // ⚠️ NOTE: Space station has no idea about landing capabilities of SpaceXCRS8.
+
+/*: 
+> Space station has no idea about landing capabilities of SpaceXCRS8.
+*/
+
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
 }
 
 // I'm a barge - I have landing site (well, you get the idea).
-final class OfCourseIStillLoveYouBarge : LandingSiteHaving {
+final class OfCourseIStillLoveYouBarge: LandingSiteHaving {
     let landingSite = "a barge on the Atlantic Ocean"
 }
 
 // I have payload and can land on things having landing site.
 // I'm a very limited Space Vehicle, I know.
-final class SpaceXCRS8 : Landing, PayloadHaving {
+final class SpaceXCRS8: Landing, PayloadHaving {
 
     let payload = "BEAM and some Cube Sats"
 
-    // ⚠️ NOTE: CRS8 knows only about the landing site information.
+/*: 
+> CRS8 knows only about the landing site information.
+*/
+
     func landOn(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
@@ -52,3 +59,4 @@ let spaceStation = InternationalSpaceStation()
 
 spaceStation.fetchPayload(crs8)
 crs8.landOn(barge)
+

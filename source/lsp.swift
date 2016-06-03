@@ -9,9 +9,9 @@ Example:
 let requestKey: NSString = "NSURLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
-class RequestError : NSError {
+class RequestError: NSError {
 
-    var request : NSURLRequest? {
+    var request: NSURLRequest? {
         return self.userInfo[requestKey] as? NSURLRequest
     }
 }
@@ -40,5 +40,6 @@ let error: Int? = result.error?.code
 
 // But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
-    requestError.request;
+    requestError.request
 }
+

@@ -15,7 +15,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-final class PodBayDoor : CanBeOpened, CanBeClosed {
+final class PodBayDoor: CanBeOpened, CanBeClosed {
 
     private enum State {
         case Open
@@ -35,7 +35,7 @@ final class PodBayDoor : CanBeOpened, CanBeClosed {
 
 // I'm only responsible for opening, no idea what's inside or how to close.
 class DoorOpener {
-    let door:CanBeOpened
+    let door: CanBeOpened
 
     init(door: CanBeOpened) {
         self.door = door
@@ -48,7 +48,7 @@ class DoorOpener {
 
 // I'm only responsible for closing, no idea what's inside or how to open.
 class DoorCloser {
-    let door:CanBeClosed
+    let door: CanBeClosed
 
     init(door: CanBeClosed) {
         self.door = door
@@ -60,11 +60,19 @@ class DoorCloser {
 }
 
 let door = PodBayDoor()
-// ⚠️ NOTE: Only the `DoorOpener` is responsible for opening the door.
+
+/*: 
+> Only the `DoorOpener` is responsible for opening the door.
+*/
+
 let doorOpener = DoorOpener(door: door)
 doorOpener.execute()
 
-// ⚠️NOTE: If another operation should be made upon closing the door,
-//        like switching on the alarm, you don't have to change the `DoorOpener` class.
+/*: 
+> If another operation should be made upon closing the door,
+> like switching on the alarm, you don't have to change the `DoorOpener` class.
+*/
+
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()
+

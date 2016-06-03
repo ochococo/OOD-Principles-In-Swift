@@ -42,7 +42,7 @@ protocol CanBeClosed {
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-final class PodBayDoor : CanBeOpened, CanBeClosed {
+final class PodBayDoor: CanBeOpened, CanBeClosed {
 
     private enum State {
         case Open
@@ -62,7 +62,7 @@ final class PodBayDoor : CanBeOpened, CanBeClosed {
 
 // I'm only responsible for opening, no idea what's inside or how to close.
 class DoorOpener {
-    let door:CanBeOpened
+    let door: CanBeOpened
 
     init(door: CanBeOpened) {
         self.door = door
@@ -75,7 +75,7 @@ class DoorOpener {
 
 // I'm only responsible for closing, no idea what's inside or how to open.
 class DoorCloser {
-    let door:CanBeClosed
+    let door: CanBeClosed
 
     init(door: CanBeClosed) {
         self.door = door
@@ -87,14 +87,26 @@ class DoorCloser {
 }
 
 let door = PodBayDoor()
-// ⚠️ NOTE: Only the `DoorOpener` is responsible for opening the door.
+
+```
+ 
+> Only the `DoorOpener` is responsible for opening the door.
+
+```swift
+
 let doorOpener = DoorOpener(door: door)
 doorOpener.execute()
 
-// ⚠️NOTE: If another operation should be made upon closing the door,
-//        like switching on the alarm, you don't have to change the `DoorOpener` class.
+```
+ 
+> If another operation should be made upon closing the door,
+> like switching on the alarm, you don't have to change the `DoorOpener` class.
+
+```swift
+
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()
+
 ```
 
 # ✋ The Open Closed Principle
@@ -110,7 +122,7 @@ protocol CanShoot {
 }
 
 // I'm a laser beam. I can shoot.
-class LaserBeam : CanShoot {
+final class LaserBeam: CanShoot {
     func shoot() -> String {
         return "Ziiiiiip!"
     }
@@ -135,9 +147,14 @@ var weapons = WeaponsComposite(weapons: [laser])
 
 weapons.shoot()
 
-// I'm a rocket launcher. I can shoot a rocket.
-// ⚠️ NOTE: To add rocket launcher support I don't need to change anything in existing classes.
-final class RocketLauncher : CanShoot {
+```
+ 
+I'm a rocket launcher. I can shoot a rocket.
+> ⚠️ To add rocket launcher support I don't need to change anything in existing classes.
+
+```swift
+
+final class RocketLauncher: CanShoot {
     func shoot() -> String {
         return "Whoosh!"
     }
@@ -147,6 +164,7 @@ let rocket = RocketLauncher()
 
 weapons = WeaponsComposite(weapons: [laser, rocket])
 weapons.shoot()
+
 ```
 
 # 👥 The Liskov Substitution Principle
@@ -160,9 +178,9 @@ Example:
 let requestKey: NSString = "NSURLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
-class RequestError : NSError {
+class RequestError: NSError {
 
-    var request : NSURLRequest? {
+    var request: NSURLRequest? {
         return self.userInfo[requestKey] as? NSURLRequest
     }
 }
@@ -191,8 +209,9 @@ let error: Int? = result.error?.code
 
 // But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
-    requestError.request;
+    requestError.request
 }
+
 ```
 
 # 🍴 The Interface Segregation Principle
@@ -220,24 +239,35 @@ protocol PayloadHaving {
 
 // I can fetch payload from vehicle (ex. via Canadarm).
 final class InternationalSpaceStation {
-    // ⚠️ NOTE: Space station has no idea about landing capabilities of SpaceXCRS8.
+
+```
+ 
+> Space station has no idea about landing capabilities of SpaceXCRS8.
+
+```swift
+
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
 }
 
 // I'm a barge - I have landing site (well, you get the idea).
-final class OfCourseIStillLoveYouBarge : LandingSiteHaving {
+final class OfCourseIStillLoveYouBarge: LandingSiteHaving {
     let landingSite = "a barge on the Atlantic Ocean"
 }
 
 // I have payload and can land on things having landing site.
 // I'm a very limited Space Vehicle, I know.
-final class SpaceXCRS8 : Landing, PayloadHaving {
+final class SpaceXCRS8: Landing, PayloadHaving {
 
     let payload = "BEAM and some Cube Sats"
 
-    // ⚠️ NOTE: CRS8 knows only about the landing site information.
+```
+ 
+> CRS8 knows only about the landing site information.
+
+```swift
+
     func landOn(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
@@ -249,6 +279,7 @@ let spaceStation = InternationalSpaceStation()
 
 spaceStation.fetchPayload(crs8)
 crs8.landOn(barge)
+
 ```
 
 # 🔩 The Dependency Inversion Principle
@@ -263,7 +294,7 @@ protocol TimeTraveling {
     func travelInTime(time: NSTimeInterval) -> String
 }
 
-final class DeLorean : TimeTraveling {
+final class DeLorean: TimeTraveling {
 	func travelInTime(time: NSTimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
@@ -272,7 +303,12 @@ final class DeLorean : TimeTraveling {
 final class EmmettBrown {
 	private let timeMachine: TimeTraveling
 
-	// ⚠️ NOTE: Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concreet class `DeLorean`.
+```
+ 
+> Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
+
+```swift
+
 	init(timeMachine: TimeTraveling) {
 		self.timeMachine = timeMachine
 	}
@@ -286,6 +322,7 @@ let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
 mastermind.travelInTime(-3600 * 8760)
+
 ```
 
 

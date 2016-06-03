@@ -10,7 +10,7 @@ protocol TimeTraveling {
     func travelInTime(time: NSTimeInterval) -> String
 }
 
-final class DeLorean : TimeTraveling {
+final class DeLorean: TimeTraveling {
 	func travelInTime(time: NSTimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
@@ -19,7 +19,10 @@ final class DeLorean : TimeTraveling {
 final class EmmettBrown {
 	private let timeMachine: TimeTraveling
 
-	// ⚠️ NOTE: Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concreet class `DeLorean`.
+/*: 
+> Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
+*/
+
 	init(timeMachine: TimeTraveling) {
 		self.timeMachine = timeMachine
 	}
@@ -33,3 +36,4 @@ let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
 mastermind.travelInTime(-3600 * 8760)
+
