@@ -20,7 +20,7 @@ final class EmmettBrown {
 	private let timeMachine: TimeTraveling
 
 /*: 
-> Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
+> ⚠ Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
 */
 
 	init(timeMachine: TimeTraveling) {

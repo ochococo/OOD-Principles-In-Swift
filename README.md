@@ -90,7 +90,7 @@ let door = PodBayDoor()
 
 ```
  
-> Only the `DoorOpener` is responsible for opening the door.
+> ⚠ Only the `DoorOpener` is responsible for opening the door.
 
 ```swift
 
@@ -99,7 +99,7 @@ doorOpener.execute()
 
 ```
  
-> If another operation should be made upon closing the door,
+> ⚠ If another operation should be made upon closing the door,
 > like switching on the alarm, you don't have to change the `DoorOpener` class.
 
 ```swift
@@ -242,7 +242,7 @@ final class InternationalSpaceStation {
 
 ```
  
-> Space station has no idea about landing capabilities of SpaceXCRS8.
+> ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
 
 ```swift
 
@@ -264,7 +264,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 
 ```
  
-> CRS8 knows only about the landing site information.
+> ⚠ CRS8 knows only about the landing site information.
 
 ```swift
 
@@ -305,7 +305,7 @@ final class EmmettBrown {
 
 ```
  
-> Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
+> ⚠ Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
 
 ```swift
 

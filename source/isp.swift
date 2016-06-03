@@ -25,7 +25,7 @@ protocol PayloadHaving {
 final class InternationalSpaceStation {
 
 /*: 
-> Space station has no idea about landing capabilities of SpaceXCRS8.
+> ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
 */
 
     func fetchPayload(vehicle: PayloadHaving) -> String {
@@ -45,7 +45,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
     let payload = "BEAM and some Cube Sats"
 
 /*: 
-> CRS8 knows only about the landing site information.
+> ⚠ CRS8 knows only about the landing site information.
 */
 
     func landOn(on: LandingSiteHaving) -> String {
