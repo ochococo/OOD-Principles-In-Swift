@@ -5,14 +5,12 @@ import Foundation
 ```
 
 
-The Principles of OOD in Swift 2.2
+The Principles of OOD in Swift 3.0
 ==================================
 
-A short cheat-sheet with Xcode 7.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
+A short cheat-sheet with Xcode 8.1 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
-
-⚠️ See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
 
 S.O.L.I.D.
 ==========
@@ -177,41 +175,41 @@ Example:
 
 ```swift
 
-let requestKey: NSString = "NSURLRequestKey"
+let requestKey: String = "URLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
 class RequestError: NSError {
-
-    var request: NSURLRequest? {
-        return self.userInfo[requestKey] as? NSURLRequest
-    }
+  
+  var request: URLRequest? {
+    return self.userInfo[requestKey] as? URLRequest
+  }
 }
 
 // I fail to fetch data and will return RequestError.
-func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
-
-    let userInfo: [NSObject:AnyObject] = [ requestKey : request ]
-
-    return (nil, RequestError(domain:"DOMAIN", code:0, userInfo: userInfo))
+func fetchData(_ request: URLRequest) -> (data: Data?, error: RequestError?) {
+  
+  let userInfo: [AnyHashable: Any] = [ requestKey : request ]
+  
+  return (nil, RequestError(domain:"DOMAIN", code:0, userInfo: userInfo))
 }
 
 // I don't know what RequestError is and will fail and return a NSError.
-func willReturnObjectOrError() -> (object: AnyObject?, error: NSError?) {
-
-    let request = NSURLRequest()
-    let result = fetchData(request)
-
-    return (result.data, result.error)
+func willReturnObjectOrError(from URL: URL) -> (object: Any?, error: NSError?) {
+  
+  let request = URLRequest(url: URL)
+  let result = fetchData(request)
+  
+  return (result.data, result.error)
 }
 
-let result = willReturnObjectOrError()
+let result = willReturnObjectOrError(from: URL(string: "https://github.com/ochococo/OOD-Principles-In-Swift")!)
 
 // Ok. This is a perfect NSError instance from my perspective.
 let error: Int? = result.error?.code
 
 // But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
-    requestError.request
+  requestError.request
 }
 
 ```
@@ -231,7 +229,7 @@ protocol LandingSiteHaving {
 
 // I can land on LandingSiteHaving objects.
 protocol Landing {
-    func landOn(on: LandingSiteHaving) -> String
+    func landOn(_ on: LandingSiteHaving) -> String
 }
 
 // I have payload.
@@ -248,7 +246,7 @@ final class InternationalSpaceStation {
 
 ```swift
 
-    func fetchPayload(vehicle: PayloadHaving) -> String {
+    func fetchPayload(from vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
 }
@@ -270,7 +268,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 
 ```swift
 
-    func landOn(on: LandingSiteHaving) -> String {
+    func landOn(_ on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
 }
@@ -279,7 +277,7 @@ let crs8 = SpaceXCRS8()
 let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
-spaceStation.fetchPayload(crs8)
+spaceStation.fetchPayload(from: crs8)
 crs8.landOn(barge)
 
 ```
@@ -293,11 +291,11 @@ Example:
 ```swift
 
 protocol TimeTraveling {
-    func travelInTime(time: NSTimeInterval) -> String
+    func travelInTime(_ time: TimeInterval) -> String
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(time: NSTimeInterval) -> String {
+	func travelInTime(_ time: TimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
 }
@@ -315,7 +313,7 @@ final class EmmettBrown {
 		self.timeMachine = timeMachine
 	}
 
-	func travelInTime(time: NSTimeInterval) -> String {
+	func travelInTime(_ time: TimeInterval) -> String {
 		return timeMachine.travelInTime(time)
 	}
 }
