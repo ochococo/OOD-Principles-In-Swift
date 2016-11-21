@@ -7,11 +7,11 @@ Example:
 */
 
 protocol TimeTraveling {
-    func travelInTime(_ time: TimeInterval) -> String
+    func travel(in time: TimeInterval) -> String
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(_ time: TimeInterval) -> String {
+	func travel(in time: TimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
 }
@@ -27,13 +27,13 @@ final class EmmettBrown {
 		self.timeMachine = timeMachine
 	}
 
-	func travelInTime(_ time: TimeInterval) -> String {
-		return timeMachine.travelInTime(time)
+	func travel(in time: TimeInterval) -> String {
+    return timeMachine.travel(in: time)
 	}
 }
 
 let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
-mastermind.travelInTime(-3600 * 8760)
+mastermind.travel(in: -3600 * 8760)
 

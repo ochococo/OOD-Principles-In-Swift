@@ -25,12 +25,15 @@ func fetchData(_ request: URLRequest) -> (data: Data?, error: RequestError?) {
 }
 
 // I don't know what RequestError is and will fail and return a NSError.
-func willReturnObjectOrError(from URL: URL) -> (object: Any?, error: NSError?) {
+func willReturnObjectOrError(from url: URL?) -> (object: Any?, error: NSError?) {
+  if let url = url {
+    let request = URLRequest(url: url)
+    let result = fetchData(request)
+    
+    return (result.data, result.error)
+  }
   
-  let request = URLRequest(url: URL)
-  let result = fetchData(request)
-  
-  return (result.data, result.error)
+  return (nil, nil)
 }
 
 let result = willReturnObjectOrError(from: URL(string: "https://github.com/ochococo/OOD-Principles-In-Swift")!)

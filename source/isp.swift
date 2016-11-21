@@ -13,7 +13,7 @@ protocol LandingSiteHaving {
 
 // I can land on LandingSiteHaving objects.
 protocol Landing {
-    func landOn(_ on: LandingSiteHaving) -> String
+    func land(on: LandingSiteHaving) -> String
 }
 
 // I have payload.
@@ -48,7 +48,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 > ⚠ CRS8 knows only about the landing site information.
 */
 
-    func landOn(_ on: LandingSiteHaving) -> String {
+    func land(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
 }
@@ -58,5 +58,5 @@ let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
 spaceStation.fetchPayload(from: crs8)
-crs8.landOn(barge)
+crs8.land(on: barge)
 

@@ -9,6 +9,8 @@ The Principles of OOD in Swift 3.0
 A short cheat-sheet with Xcode 8.1 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
+ 
+ -⚠️ See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
 
 S.O.L.I.D.
 ==========
@@ -179,12 +181,15 @@ func fetchData(_ request: URLRequest) -> (data: Data?, error: RequestError?) {
 }
 
 // I don't know what RequestError is and will fail and return a NSError.
-func willReturnObjectOrError(from URL: URL) -> (object: Any?, error: NSError?) {
+func willReturnObjectOrError(from url: URL?) -> (object: Any?, error: NSError?) {
+  if let url = url {
+    let request = URLRequest(url: url)
+    let result = fetchData(request)
+    
+    return (result.data, result.error)
+  }
   
-  let request = URLRequest(url: URL)
-  let result = fetchData(request)
-  
-  return (result.data, result.error)
+  return (nil, nil)
 }
 
 let result = willReturnObjectOrError(from: URL(string: "https://github.com/ochococo/OOD-Principles-In-Swift")!)
@@ -212,7 +217,7 @@ protocol LandingSiteHaving {
 
 // I can land on LandingSiteHaving objects.
 protocol Landing {
-    func landOn(_ on: LandingSiteHaving) -> String
+    func land(on: LandingSiteHaving) -> String
 }
 
 // I have payload.
@@ -247,7 +252,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 > ⚠ CRS8 knows only about the landing site information.
 */
 
-    func landOn(_ on: LandingSiteHaving) -> String {
+    func land(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
 }
@@ -257,7 +262,7 @@ let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
 spaceStation.fetchPayload(from: crs8)
-crs8.landOn(barge)
+crs8.land(on: barge)
 
 /*:
 # 🔩 The Dependency Inversion Principle
@@ -268,11 +273,11 @@ Example:
 */
 
 protocol TimeTraveling {
-    func travelInTime(_ time: TimeInterval) -> String
+    func travel(in time: TimeInterval) -> String
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(_ time: TimeInterval) -> String {
+	func travel(in time: TimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
 }
@@ -288,15 +293,15 @@ final class EmmettBrown {
 		self.timeMachine = timeMachine
 	}
 
-	func travelInTime(_ time: TimeInterval) -> String {
-		return timeMachine.travelInTime(time)
+	func travel(in time: TimeInterval) -> String {
+    return timeMachine.travel(in: time)
 	}
 }
 
 let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
-mastermind.travelInTime(-3600 * 8760)
+mastermind.travel(in: -3600 * 8760)
 
 /*:
 
