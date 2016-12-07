@@ -182,7 +182,7 @@ func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 func willReturnObjectOrError() -> (object: AnyObject?, error: NSError?) {
 
     let request = NSURLRequest()
-    let result = fetchData(request)
+    let result = fetchData(request: request)
 
     return (result.data, result.error)
 }
@@ -256,8 +256,8 @@ let crs8 = SpaceXCRS8()
 let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
-spaceStation.fetchPayload(crs8)
-crs8.landOn(barge)
+spaceStation.fetchPayload(vehicle: crs8)
+crs8.landOn(on: barge)
 
 /*:
 # 🔩 The Dependency Inversion Principle
@@ -268,11 +268,11 @@ Example:
 */
 
 protocol TimeTraveling {
-    func travelInTime(time: NSTimeInterval) -> String
+    func travelInTime(time: TimeInterval) -> String
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(time: NSTimeInterval) -> String {
+	func travelInTime(time: TimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
 }
@@ -288,15 +288,15 @@ final class EmmettBrown {
 		self.timeMachine = timeMachine
 	}
 
-	func travelInTime(time: NSTimeInterval) -> String {
-		return timeMachine.travelInTime(time)
+	func travelInTime(time: TimeInterval) -> String {
+		return timeMachine.travelInTime(time: time)
 	}
 }
 
 let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
-mastermind.travelInTime(-3600 * 8760)
+mastermind.travelInTime(time: -3600 * 8760)
 
 /*:
 
