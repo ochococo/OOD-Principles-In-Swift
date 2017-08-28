@@ -3,12 +3,15 @@ import Foundation
 
 /*:
 
-The Principles of OOD in Swift 2.2
+The Principles of OOD in Swift 4
 ==================================
 
-A short cheat-sheet with Xcode 7.3 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
+A short cheat-sheet with Xcode 9 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
+ Also compatible with Xcode 8 and Swift 3.
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
+
+⚠️ See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
 
 S.O.L.I.D.
 ==========
@@ -160,7 +163,7 @@ Derived classes must be substitutable for their base classes. ([read more](http:
 Example:
 */
 
-let requestKey: NSString = "NSURLRequestKey"
+let requestKey: String = "NSURLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
 class RequestError: NSError {
@@ -173,7 +176,7 @@ class RequestError: NSError {
 // I fail to fetch data and will return RequestError.
 func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 
-    let userInfo: [NSObject:AnyObject] = [ requestKey : request ]
+    let userInfo: [String:Any] = [requestKey : request]
 
     return (nil, RequestError(domain:"DOMAIN", code:0, userInfo: userInfo))
 }
@@ -182,7 +185,7 @@ func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 func willReturnObjectOrError() -> (object: AnyObject?, error: NSError?) {
 
     let request = NSURLRequest()
-    let result = fetchData(request)
+    let result = fetchData(request: request)
 
     return (result.data, result.error)
 }
@@ -212,7 +215,7 @@ protocol LandingSiteHaving {
 
 // I can land on LandingSiteHaving objects.
 protocol Landing {
-    func landOn(on: LandingSiteHaving) -> String
+    func land(on: LandingSiteHaving) -> String
 }
 
 // I have payload.
@@ -247,7 +250,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 > ⚠ CRS8 knows only about the landing site information.
 */
 
-    func landOn(on: LandingSiteHaving) -> String {
+    func land(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
 }
@@ -256,11 +259,10 @@ let crs8 = SpaceXCRS8()
 let barge = OfCourseIStillLoveYouBarge()
 let spaceStation = InternationalSpaceStation()
 
-spaceStation.fetchPayload(crs8)
-crs8.landOn(barge)
-
+spaceStation.fetchPayload(vehicle: crs8)
+crs8.land(on: barge)
 /*:
-# 🔩 The Dependency Inversion Principle
+# 🔝 The Dependency Inversion Principle
 
 Depend on abstractions, not on concretions. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
 
@@ -268,11 +270,11 @@ Example:
 */
 
 protocol TimeTraveling {
-    func travelInTime(time: NSTimeInterval) -> String
+    func travelInTime(time: TimeInterval) -> String
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(time: NSTimeInterval) -> String {
+	func travelInTime(time: TimeInterval) -> String {
 		return "Used Flux Capacitor and travelled in time by: \(time)s"
 	}
 }
@@ -288,16 +290,15 @@ final class EmmettBrown {
 		self.timeMachine = timeMachine
 	}
 
-	func travelInTime(time: NSTimeInterval) -> String {
-		return timeMachine.travelInTime(time)
+	func travelInTime(time: TimeInterval) -> String {
+		return timeMachine.travelInTime(time: time)
 	}
 }
 
 let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
-mastermind.travelInTime(-3600 * 8760)
-
+mastermind.travelInTime(time: -3600 * 8760)
 /*:
 
 Info
