@@ -6,7 +6,7 @@ Derived classes must be substitutable for their base classes. ([read more](http:
 Example:
 */
 
-let requestKey: NSString = "NSURLRequestKey"
+let requestKey: String = "NSURLRequestKey"
 
 // I'm a NSError subclass. I provide additional functionality but don't mess with original ones.
 class RequestError: NSError {
@@ -19,7 +19,7 @@ class RequestError: NSError {
 // I fail to fetch data and will return RequestError.
 func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 
-    let userInfo: [NSObject:AnyObject] = [ requestKey : request ]
+    let userInfo: [String:Any] = [requestKey : request]
 
     return (nil, RequestError(domain:"DOMAIN", code:0, userInfo: userInfo))
 }
@@ -28,7 +28,7 @@ func fetchData(request: NSURLRequest) -> (data: NSData?, error: RequestError?) {
 func willReturnObjectOrError() -> (object: AnyObject?, error: NSError?) {
 
     let request = NSURLRequest()
-    let result = fetchData(request)
+    let result = fetchData(request: request)
 
     return (result.data, result.error)
 }
