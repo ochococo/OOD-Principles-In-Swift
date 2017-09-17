@@ -22,4 +22,9 @@ S.O.L.I.D.
 * [The Interface Segregation Principle](#-the-interface-segregation-principle)
 * [The Dependency Inversion Principle](#-the-dependency-inversion-principle)
 
+Others
+======
+
+* [Law of Demeter](#law-of-demeter)
+
 */

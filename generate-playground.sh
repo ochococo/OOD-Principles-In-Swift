@@ -12,6 +12,8 @@ cat ./source/lsp.swift >> ./contents.swift
 cat ./source/isp.swift >> ./contents.swift
 cat ./source/dip.swift >> ./contents.swift
 
+cat ./source/lod.swift >> ./contents.swift
+
 cat ./source/footer.swift >> ./contents.swift
 
 cp ./contents.swift ./OOD-Principles-In-Swift.playground/contents.swift
