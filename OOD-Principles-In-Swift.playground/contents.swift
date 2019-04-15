@@ -1,13 +1,9 @@
-import Swift
-import Foundation
-
 /*:
 
-The Principles of OOD in Swift 4
-==================================
+The Principles of OOD in Swift 5
+================================
 
-A short cheat-sheet with Xcode 9 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
- Also compatible with Xcode 8 and Swift 3.
+A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
@@ -23,6 +19,9 @@ S.O.L.I.D.
 * [The Dependency Inversion Principle](#-the-dependency-inversion-principle)
 
 */
+
+import Foundation
+
 /*:
 # 🔐 The Single Responsibility Principle
 
@@ -31,38 +30,38 @@ A class should have one, and only one, reason to change. ([read more](https://do
 Example:
 */
 
-protocol CanBeOpened {
-    func open()
+protocol Openable {
+    mutating func open()
 }
 
-protocol CanBeClosed {
-    func close()
+protocol Closeable {
+    mutating func close()
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-final class PodBayDoor: CanBeOpened, CanBeClosed {
+struct PodBayDoor: Openable, Closeable {
 
     private enum State {
-        case Open
-        case Closed
+        case open
+        case closed
     }
 
-    private var state: State = .Closed
+    private var state: State = .closed
 
-    func open() {
-        state = .Open
+    mutating func open() {
+        state = .open
     }
 
-    func close() {
-        state = .Closed
+    mutating func close() {
+        state = .closed
     }
 }
 
 // I'm only responsible for opening, no idea what's inside or how to close.
-class DoorOpener {
-    let door: CanBeOpened
+final class DoorOpener {
+    private var door: Openable
 
-    init(door: CanBeOpened) {
+    init(door: Openable) {
         self.door = door
     }
 
@@ -72,10 +71,10 @@ class DoorOpener {
 }
 
 // I'm only responsible for closing, no idea what's inside or how to open.
-class DoorCloser {
-    let door: CanBeClosed
+final class DoorCloser {
+    private var door: Closeable
 
-    init(door: CanBeClosed) {
+    init(door: Closeable) {
         self.door = door
     }
 
@@ -109,12 +108,12 @@ You should be able to extend a classes behavior, without modifying it. ([read mo
 Example:
  */
 
-protocol CanShoot {
+protocol Shooting {
     func shoot() -> String
 }
 
 // I'm a laser beam. I can shoot.
-final class LaserBeam: CanShoot {
+final class LaserBeam: Shooting {
     func shoot() -> String {
         return "Ziiiiiip!"
     }
@@ -123,9 +122,9 @@ final class LaserBeam: CanShoot {
 // I have weapons and trust me I can fire them all at once. Boom! Boom! Boom!
 final class WeaponsComposite {
 
-    let weapons: [CanShoot]
+    let weapons: [Shooting]
 
-    init(weapons: [CanShoot]) {
+    init(weapons: [Shooting]) {
         self.weapons = weapons
     }
 
@@ -144,7 +143,7 @@ I'm a rocket launcher. I can shoot a rocket.
 > ⚠️ To add rocket launcher support I don't need to change anything in existing classes.
 */
 
-final class RocketLauncher: CanShoot {
+final class RocketLauncher: Shooting {
     func shoot() -> String {
         return "Whoosh!"
     }
@@ -224,12 +223,16 @@ protocol PayloadHaving {
 }
 
 // I can fetch payload from vehicle (ex. via Canadarm).
-final class InternationalSpaceStation {
+
+protocol PayloadFetching {
+    func fetchPayload(vehicle: PayloadHaving) -> String
+}
+
+final class InternationalSpaceStation: PayloadFetching {
 
 /*: 
 > ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
 */
-
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
