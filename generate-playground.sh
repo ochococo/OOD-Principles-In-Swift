@@ -1,30 +1,56 @@
 #!/bin/bash
 
-rm ./contents.swift
+# Note: I think this part is absolute garbage but it's a snapshot of my current skills with Bash. 
+# Would love to rewrite it in Swift soon.
 
-rm ./OOD-Principles-In-Swift.playground.zip
+combineSwift() {
+	cat source/startComment > $2
+	cat $1/header.md  >> $2
+	cat source/contents.md  >> $2
+	cat source/endComment >> $2
+	cat source/imports.swift >> $2
+	cat $1/*.swift >> $2
+	{ rm $2 && awk '{gsub("\\*//\\*:", "", $0); print}' > $2; } < $2
+}
 
-cat ./source/header.swift > ./contents.swift
+move() {
+	mv $1.swift OOD-Principles-In-Swift.playground/contents.swift
+}
 
-cat ./source/srp.swift >> ./contents.swift
-cat ./source/ocp.swift >> ./contents.swift
-cat ./source/lsp.swift >> ./contents.swift
-cat ./source/isp.swift >> ./contents.swift
-cat ./source/dip.swift >> ./contents.swift
+playground() {
+	combineSwift source/$1 $1.swift 
+	move $1
+}
 
-cat ./source/footer.swift >> ./contents.swift
+combineMarkdown() {
+	cat $1/header.md  > $2
 
-cp ./contents.swift ./OOD-Principles-In-Swift.playground/contents.swift
+	{ rm $2 && awk '{gsub("\\*/", "", $0); print}' > $2; } < $2
+	{ rm $2 && awk '{gsub("/\\*:", "", $0); print}' > $2; } < $2
 
-{ rm contents.swift && awk '{gsub("\\*//\\*:", "", $0); print}' > contents.swift; } < contents.swift
-{ rm contents.swift && awk '{gsub("/\\*:", "```\n", $0); print}' > contents.swift; } < contents.swift
-{ rm contents.swift && awk '{gsub("\\*/", "\n```swift", $0); print}' > contents.swift; } < contents.swift
+	cat source/startSwiftCode >> $2
+	cat $1/*.swift >> $2
 
-{ rm contents.swift && awk 'NR>1{print buf}{buf = $0}' > contents.swift; } < contents.swift
+	{ rm $2 && awk '{gsub("\\*//\\*:", "", $0); print}' > $2; } < $2
+	{ rm $2 && awk '{gsub("\\*/", "\n```swift", $0); print}' > $2; } < $2
+	{ rm $2 && awk '{gsub("/\\*:", "```\n", $0); print}' > $2; } < $2
+	
+	cat source/endSwiftCode >> $2
 
-echo "\`\`\`swift
-$(cat ./contents.swift)" > ./README.md
+	{ rm $2 && awk '{gsub("```swift```", "", $0); print}' > $2; } < $2
+
+	cat $2 >> README.md
+	rm $2
+}
+
+readme() {
+	echo "" > $2
+	combineMarkdown source/$1 $1.md
+	cat source/footer.md  >> $2
+}
+
+playground SOLID
 
 zip -r -X OOD-Principles-In-Swift.playground.zip ./OOD-Principles-In-Swift.playground
 
-rm ./contents.swift
+readme SOLID README.md

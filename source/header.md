@@ -1,13 +1,8 @@
-import Swift
-import Foundation
 
-/*:
+The Principles of OOD in Swift 5
+================================
 
-The Principles of OOD in Swift 4
-==================================
-
-A short cheat-sheet with Xcode 9 Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
- Also compatible with Xcode 8 and Swift 3.
+A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
@@ -21,5 +16,3 @@ S.O.L.I.D.
 * [The Liskov Substitution Principle](#-the-liskov-substitution-principle)
 * [The Interface Segregation Principle](#-the-interface-segregation-principle)
 * [The Dependency Inversion Principle](#-the-dependency-inversion-principle)
-
-*/
