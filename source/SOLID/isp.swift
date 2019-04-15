@@ -22,12 +22,16 @@ protocol PayloadHaving {
 }
 
 // I can fetch payload from vehicle (ex. via Canadarm).
-final class InternationalSpaceStation {
+
+protocol PayloadFetching {
+    func fetchPayload(vehicle: PayloadHaving) -> String
+}
+
+final class InternationalSpaceStation: PayloadFetching {
 
 /*: 
 > ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
 */
-
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }

@@ -6,12 +6,12 @@ You should be able to extend a classes behavior, without modifying it. ([read mo
 Example:
  */
 
-protocol CanShoot {
+protocol Shooting {
     func shoot() -> String
 }
 
 // I'm a laser beam. I can shoot.
-final class LaserBeam: CanShoot {
+final class LaserBeam: Shooting {
     func shoot() -> String {
         return "Ziiiiiip!"
     }
@@ -20,9 +20,9 @@ final class LaserBeam: CanShoot {
 // I have weapons and trust me I can fire them all at once. Boom! Boom! Boom!
 final class WeaponsComposite {
 
-    let weapons: [CanShoot]
+    let weapons: [Shooting]
 
-    init(weapons: [CanShoot]) {
+    init(weapons: [Shooting]) {
         self.weapons = weapons
     }
 
@@ -41,7 +41,7 @@ I'm a rocket launcher. I can shoot a rocket.
 > ⚠️ To add rocket launcher support I don't need to change anything in existing classes.
 */
 
-final class RocketLauncher: CanShoot {
+final class RocketLauncher: Shooting {
     func shoot() -> String {
         return "Whoosh!"
     }
