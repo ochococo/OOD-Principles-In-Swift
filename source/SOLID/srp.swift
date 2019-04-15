@@ -6,38 +6,38 @@ A class should have one, and only one, reason to change. ([read more](https://do
 Example:
 */
 
-protocol CanBeOpened {
-    func open()
+protocol Openable {
+    mutating func open()
 }
 
-protocol CanBeClosed {
-    func close()
+protocol Closeable {
+    mutating func close()
 }
 
 // I'm the door. I have an encapsulated state and you can change it using methods.
-final class PodBayDoor: CanBeOpened, CanBeClosed {
+struct PodBayDoor: Openable, Closeable {
 
     private enum State {
-        case Open
-        case Closed
+        case open
+        case closed
     }
 
-    private var state: State = .Closed
+    private var state: State = .closed
 
-    func open() {
-        state = .Open
+    mutating func open() {
+        state = .open
     }
 
-    func close() {
-        state = .Closed
+    mutating func close() {
+        state = .closed
     }
 }
 
 // I'm only responsible for opening, no idea what's inside or how to close.
-class DoorOpener {
-    let door: CanBeOpened
+final class DoorOpener {
+    private var door: Openable
 
-    init(door: CanBeOpened) {
+    init(door: Openable) {
         self.door = door
     }
 
@@ -47,10 +47,10 @@ class DoorOpener {
 }
 
 // I'm only responsible for closing, no idea what's inside or how to open.
-class DoorCloser {
-    let door: CanBeClosed
+final class DoorCloser {
+    private var door: Closeable
 
-    init(door: CanBeClosed) {
+    init(door: Closeable) {
         self.door = door
     }
 
