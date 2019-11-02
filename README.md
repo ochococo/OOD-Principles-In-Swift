@@ -7,7 +7,9 @@ A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](ht
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
-⚠️ See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
+❤️ Please consider supporting my work, [become my Sponsor!](https://github.com/sponsors/ochococo) 🙏
+
+See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
 
 S.O.L.I.D.
 ==========
