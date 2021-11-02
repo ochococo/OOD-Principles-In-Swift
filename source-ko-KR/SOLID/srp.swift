@@ -1,9 +1,7 @@
 /*:
-# 🔐 The Single Responsibility Principle
+# 🔐 클래스에는 단 한 가지 변경 이유만 존재해야 한다. ([자세히](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
 
-A class should have one, and only one, reason to change. ([read more](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
-
-Example:
+예시:
 */
 
 protocol Openable {
@@ -14,7 +12,7 @@ protocol Closeable {
     mutating func close()
 }
 
-// I'm the door. I have an encapsulated state and you can change it using methods.
+// 문. 캡슐화된 상태를 갖고 있으며 메서드를 사용해 변경할 수 있다.
 struct PodBayDoor: Openable, Closeable {
 
     private enum State {
@@ -33,7 +31,7 @@ struct PodBayDoor: Openable, Closeable {
     }
 }
 
-// I'm only responsible for opening, no idea what's inside or how to close.
+// 여는 일만 담당하며 안에 무엇이 들어있는 지, 어떻게 닫는 지 모른다.
 final class DoorOpener {
     private var door: Openable
 
@@ -46,7 +44,7 @@ final class DoorOpener {
     }
 }
 
-// I'm only responsible for closing, no idea what's inside or how to open.
+// 닫는 일만 담당하며 안에 무엇이 들어있는 지, 어떻게 여는 지 모른다.
 final class DoorCloser {
     private var door: Closeable
 
@@ -61,13 +59,12 @@ final class DoorCloser {
 
 let door = PodBayDoor()
 
- 
-// ⚠️ Only the `DoorOpener` is responsible for opening the door.
+// ⚠️ `DoorOpeneer`만이 문을 여는 책임이 있다.
 let doorOpener = DoorOpener(door: door)
 doorOpener.execute()
 
-// ⚠️ If another operation should be made upon closing the door,
-// like switching on the alarm, you don't have to change the `DoorOpener` class.
+// ⚠️ 문을 닫은 후 다른 작업을 해야 하는 경우,
+// 알람을 켜는 것처럼 `DoorOpener` 클래스를 변경할 필요가 없다.
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()
 

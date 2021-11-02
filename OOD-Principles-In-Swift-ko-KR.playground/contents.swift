@@ -1,4 +1,4 @@
-
+/*:
 객체지향 설계 원칙 in Swift 5
 =========================
 
@@ -17,14 +17,15 @@ S.O.L.I.D.
 * [The Interface Segregation Principle (인터페이스 분리 원칙)](#-the-interface-segregation-principle-인터페이스-분리-원칙)
 * [The Dependency Inversion Principle (의존관계 역전 원칙)](#-the-dependency-inversion-principle-의존관계-역전-원칙)
 
+*/
 
+import Foundation
 
-
+/*:
 # 🔐 클래스에는 단 한 가지 변경 이유만 존재해야 한다. ([자세히](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
 
 예시:
-
-```swift
+*/
 
 protocol Openable {
     mutating func open()
@@ -90,15 +91,13 @@ doorOpener.execute()
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()
 
-```
-
+/*:
 # ✋ The Open Closed Principle (개방 폐쇄 원칙)
 
 클래스의 동작을 수정하지 않고, 확장할 수 있어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1&hl=en))
 
 예시:
- 
-```swift
+ */
 
 protocol Shooting {
     func shoot() -> String
@@ -143,15 +142,13 @@ let rocket = RocketLauncher()
 weapons = WeaponsComposite(weapons: [laser, rocket])
 weapons.shoot()
 
-```
-
+/*:
 # 👥 The Liskov Substitution Principle (리스코프 치환 원칙)
 
 파생된 클래스는 기본 클래스를 대체할 수 있어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
 
 예시:
-
-```swift
+*/
 
 let requestKey: String = "NSURLRequestKey"
 
@@ -190,15 +187,13 @@ if let requestError = result.error as? RequestError {
     requestError.request
 }
 
-```
-
+/*:
 # 🍴 The Interface Segregation Principle (인터페이스 분리 원칙)
 
 클라이언트별로 세분화된 인터페이스를 만들어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
 
 예시:
- 
-```swift
+ */
 
 // 방문 사이트가 있다.
 protocol LandingSiteHaving {
@@ -251,15 +246,13 @@ let spaceStation = InternationalSpaceStation()
 
 spaceStation.fetchPayload(vehicle: crs8)
 crs8.land(on: barge)
-```
-
+/*:
 # 🔝 The Dependency Inversion Principle (의존관계 역전 원칙)
 
 구체화에 의존하지 말고 추상화에 의존하라. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
 
 예시:
-
-```swift
+*/
 
 protocol TimeTraveling {
     func travelInTime(time: TimeInterval) -> String
@@ -289,10 +282,11 @@ let timeMachine = DeLorean()
 
 let mastermind = EmmettBrown(timeMachine: timeMachine)
 mastermind.travelInTime(time: -3600 * 8760)
-```
-
+/*:
 
 Info
 ====
 
 📖 Descriptions from: [The Principles of OOD by Uncle Bob](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+
+*/

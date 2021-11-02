@@ -38,7 +38,7 @@ let result = willReturnObjectOrError()
 // Ok. This is a perfect NSError instance from my perspective.
 let error: Int? = result.error?.code
 
-// But hey! What's that? It's also a RequestError! Nice!
+// ⚠️ But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
     requestError.request
 }

@@ -1,9 +1,9 @@
 /*:
-# 🔝 The Dependency Inversion Principle
+# 🔝 The Dependency Inversion Principle (의존관계 역전 원칙)
 
-Depend on abstractions, not on concretions. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
+구체화에 의존하지 말고 추상화에 의존하라. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
 
-Example:
+예시:
 */
 
 protocol TimeTraveling {
@@ -19,7 +19,8 @@ final class DeLorean: TimeTraveling {
 final class EmmettBrown {
 	private let timeMachine: TimeTraveling
 
-    // ⚠️ Emmet Brown is given a `TimeTraveling` device, not the concrete class `DeLorean`!
+
+    // ⚠️ Emmet Brown은 `DeLorean`을 구체적인 클래스인 `DeLorean`이 아닌, `TimeTraveling` 장치로 받는다.
 	init(timeMachine: TimeTraveling) {
 		self.timeMachine = timeMachine
 	}

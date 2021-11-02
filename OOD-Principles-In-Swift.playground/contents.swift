@@ -7,8 +7,6 @@ A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](ht
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
-⚠️ See my most popular project to date: [Design-Patterns-In-Swift](https://github.com/ochococo/Design-Patterns-In-Swift)
-
 S.O.L.I.D.
 ==========
 
@@ -85,18 +83,13 @@ final class DoorCloser {
 
 let door = PodBayDoor()
 
-/*: 
-> ⚠ Only the `DoorOpener` is responsible for opening the door.
-*/
-
+ 
+// ⚠️ Only the `DoorOpener` is responsible for opening the door.
 let doorOpener = DoorOpener(door: door)
 doorOpener.execute()
 
-/*: 
-> ⚠ If another operation should be made upon closing the door,
-> like switching on the alarm, you don't have to change the `DoorOpener` class.
-*/
-
+// ⚠️ If another operation should be made upon closing the door,
+// like switching on the alarm, you don't have to change the `DoorOpener` class.
 let doorCloser = DoorCloser(door: door)
 doorCloser.execute()
 
@@ -138,11 +131,8 @@ var weapons = WeaponsComposite(weapons: [laser])
 
 weapons.shoot()
 
-/*: 
-I'm a rocket launcher. I can shoot a rocket.
-> ⚠️ To add rocket launcher support I don't need to change anything in existing classes.
-*/
-
+// I'm a rocket launcher. I can shoot a rocket.
+// ⚠️ To add rocket launcher support I don't need to change anything in existing classes.
 final class RocketLauncher: Shooting {
     func shoot() -> String {
         return "Whoosh!"
@@ -194,7 +184,7 @@ let result = willReturnObjectOrError()
 // Ok. This is a perfect NSError instance from my perspective.
 let error: Int? = result.error?.code
 
-// But hey! What's that? It's also a RequestError! Nice!
+// ⚠️ But hey! What's that? It's also a RequestError! Nice!
 if let requestError = result.error as? RequestError {
     requestError.request
 }
@@ -230,9 +220,8 @@ protocol PayloadFetching {
 
 final class InternationalSpaceStation: PayloadFetching {
 
-/*: 
-> ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
-*/
+
+    // ⚠ Space station has no idea about landing capabilities of SpaceXCRS8.
     func fetchPayload(vehicle: PayloadHaving) -> String {
         return "Deployed \(vehicle.payload) at April 10, 2016, 11:23 UTC"
     }
@@ -249,10 +238,7 @@ final class SpaceXCRS8: Landing, PayloadHaving {
 
     let payload = "BEAM and some Cube Sats"
 
-/*: 
-> ⚠ CRS8 knows only about the landing site information.
-*/
-
+    // ⚠️ CRS8 knows only about the landing site information.
     func land(on: LandingSiteHaving) -> String {
         return "Landed on \(on.landingSite) at April 8, 2016 20:52 UTC"
     }
@@ -285,10 +271,7 @@ final class DeLorean: TimeTraveling {
 final class EmmettBrown {
 	private let timeMachine: TimeTraveling
 
-/*: 
-> ⚠ Emmet Brown is given the `DeLorean` as a `TimeTraveling` device, not the concrete class `DeLorean`.
-*/
-
+    // ⚠️ Emmet Brown is given a `TimeTraveling` device, not the concrete class `DeLorean`!
 	init(timeMachine: TimeTraveling) {
 		self.timeMachine = timeMachine
 	}
