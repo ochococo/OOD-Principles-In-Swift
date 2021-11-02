@@ -7,6 +7,10 @@ A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](ht
 
 👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
 
+## Translations
+
+🇰🇷 Korean: [README-ko-KR.md](https://github.com/ochococo/OOD-Principles-In-Swift/blob/master/README-ko-KR.md)
+
 S.O.L.I.D.
 ==========
 
