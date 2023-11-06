@@ -266,23 +266,22 @@ protocol TimeTraveling {
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(time: TimeInterval) -> String {
-		return "Used Flux Capacitor and travelled in time by: \(time)s"
-	}
+    func travelInTime(time: TimeInterval) -> String {
+        return "Used Flux Capacitor and travelled in time by: \(time)s"
+    }
 }
 
 final class EmmettBrown {
-	private let timeMachine: TimeTraveling
-
+    private let timeMachine: TimeTraveling
 
     // ⚠️ Emmet Brown은 `DeLorean`을 구체적인 클래스인 `DeLorean`이 아닌, `TimeTraveling` 장치로 받는다.
-	init(timeMachine: TimeTraveling) {
-		self.timeMachine = timeMachine
-	}
+    init(timeMachine: TimeTraveling) {
+        self.timeMachine = timeMachine
+    }
 
-	func travelInTime(time: TimeInterval) -> String {
-		return timeMachine.travelInTime(time: time)
-	}
+    func travelInTime(time: TimeInterval) -> String {
+        return timeMachine.travelInTime(time: time)
+    }
 }
 
 let timeMachine = DeLorean()
