@@ -274,22 +274,22 @@ protocol TimeTraveling {
 }
 
 final class DeLorean: TimeTraveling {
-	func travelInTime(time: TimeInterval) -> String {
-		return "Used Flux Capacitor and travelled in time by: \(time)s"
-	}
+    func travelInTime(time: TimeInterval) -> String {
+        return "Used Flux Capacitor and travelled in time by: \(time)s"
+    }
 }
 
 final class EmmettBrown {
-	private let timeMachine: TimeTraveling
+    private let timeMachine: TimeTraveling
 
     // ⚠️ Emmet Brown is given a `TimeTraveling` device, not the concrete class `DeLorean`!
-	init(timeMachine: TimeTraveling) {
-		self.timeMachine = timeMachine
-	}
+    init(timeMachine: TimeTraveling) {
+        self.timeMachine = timeMachine
+    }
 
-	func travelInTime(time: TimeInterval) -> String {
-		return timeMachine.travelInTime(time: time)
-	}
+    func travelInTime(time: TimeInterval) -> String {
+        return timeMachine.travelInTime(time: time)
+    }
 }
 
 let timeMachine = DeLorean()
