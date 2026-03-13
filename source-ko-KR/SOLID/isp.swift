@@ -1,7 +1,13 @@
 /*:
 # 🍴 The Interface Segregation Principle (인터페이스 분리 원칙)
 
-클라이언트별로 세분화된 인터페이스를 만들어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
+클라이언트별로 세분화된 인터페이스를 만들어야 한다.
+
+클라이언트는 자신이 사용하지 않는 메서드에 의존하도록 강제되어서는 안 된다.
+인터페이스가 지나치게 커지면 클라이언트는 호출하지 않는 메서드에까지 결합되며,
+그 관련 없는 메서드가 변경되면 클라이언트도 재컴파일하거나 재배포해야 할 수 있다.
+비대한 인터페이스를 작고 역할별로 특화된 프로토콜로 분리하면 의존성을 좁고
+응집력 있게 유지할 수 있다.
 
 예시:
  */

@@ -1,7 +1,13 @@
 /*:
 # 👥 The Liskov Substitution Principle
 
-Derived classes must be substitutable for their base classes. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
+Derived classes must be substitutable for their base classes.
+
+Subtypes must honor the behavioral contract of their supertypes: they must not
+strengthen preconditions, weaken postconditions, or violate invariants. A caller
+that works with a base type must be able to use any subtype without knowing it,
+and the program should still behave correctly. Violations of this principle lead
+to fragile hierarchies where `if/else` type-checks creep into client code.
 
 Example:
 */

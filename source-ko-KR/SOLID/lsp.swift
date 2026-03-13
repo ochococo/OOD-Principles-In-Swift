@@ -1,7 +1,13 @@
 /*:
 # 👥 The Liskov Substitution Principle (리스코프 치환 원칙)
 
-파생된 클래스는 기본 클래스를 대체할 수 있어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
+파생된 클래스는 기본 클래스를 대체할 수 있어야 한다.
+
+하위 타입은 상위 타입의 행위적 계약을 준수해야 한다: 사전 조건을 강화하거나,
+사후 조건을 약화하거나, 불변 조건을 위반해서는 안 된다. 기본 타입으로 작업하는
+호출자는 하위 타입을 알지 못한 채 사용할 수 있어야 하며, 프로그램은 여전히
+올바르게 동작해야 한다. 이 원칙을 위반하면 클라이언트 코드에 `if/else` 타입
+검사가 스며드는 취약한 계층 구조가 생긴다.
 
 예시:
 */

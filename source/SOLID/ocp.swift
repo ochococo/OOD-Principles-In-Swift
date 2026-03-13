@@ -1,7 +1,13 @@
 /*:
 # ✋ The Open Closed Principle
 
-You should be able to extend a classes behavior, without modifying it. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1&hl=en))
+You should be able to extend a class's behavior, without modifying it.
+
+Software entities (classes, modules, functions) should be open for extension
+but closed for modification. The key insight is that when a single change
+ripples through dependent modules, the design is fragile. By relying on
+abstractions (protocols), new behavior can be added by writing new code —
+not by changing existing, working code.
 
 Example:
  */

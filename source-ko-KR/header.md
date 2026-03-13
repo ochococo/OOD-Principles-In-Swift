@@ -3,7 +3,7 @@
 
 A short cheat-sheet with Playground ([OOD-Principles-In-Swift-ko-KR.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift-ko-KR.playground.zip)).
 
-👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
+👷 Project maintained by: [@oktawian](https://bsky.app/profile/oktawian.bsky.social) (Oktawian Chojnacki)
 
 🇰🇷 Translated by: [jwonyLee](https://github.com/jwonyLee) (JiWon Lee)
 

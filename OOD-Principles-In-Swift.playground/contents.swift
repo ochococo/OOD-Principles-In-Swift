@@ -5,7 +5,7 @@ The Principles of OOD in Swift 5
 
 A short cheat-sheet with Playground ([OOD-Principles-In-Swift.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift.playground.zip)).
 
-👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
+👷 Project maintained by: [@oktawian](https://bsky.app/profile/oktawian.bsky.social) (Oktawian Chojnacki)
 
 S.O.L.I.D.
 ==========
@@ -23,7 +23,13 @@ import Foundation
 /*:
 # 🔐 The Single Responsibility Principle
 
-A class should have one, and only one, reason to change. ([read more](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
+A class should have one, and only one, reason to change.
+
+A refined formulation: a module should be responsible to one, and only one,
+actor (stakeholder). SRP is not about "doing one thing" — it is about gathering
+together the things that change for the same reasons and separating those that
+change for different reasons. When a class serves multiple actors, changes
+requested by one actor risk breaking the expectations of another.
 
 Example:
 */
@@ -96,7 +102,13 @@ doorCloser.execute()
 /*:
 # ✋ The Open Closed Principle
 
-You should be able to extend a classes behavior, without modifying it. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1&hl=en))
+You should be able to extend a class's behavior, without modifying it.
+
+Software entities (classes, modules, functions) should be open for extension
+but closed for modification. The key insight is that when a single change
+ripples through dependent modules, the design is fragile. By relying on
+abstractions (protocols), new behavior can be added by writing new code —
+not by changing existing, working code.
 
 Example:
  */
@@ -147,7 +159,13 @@ weapons.shoot()
 /*:
 # 👥 The Liskov Substitution Principle
 
-Derived classes must be substitutable for their base classes. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
+Derived classes must be substitutable for their base classes.
+
+Subtypes must honor the behavioral contract of their supertypes: they must not
+strengthen preconditions, weaken postconditions, or violate invariants. A caller
+that works with a base type must be able to use any subtype without knowing it,
+and the program should still behave correctly. Violations of this principle lead
+to fragile hierarchies where `if/else` type-checks creep into client code.
 
 Example:
 */
@@ -192,7 +210,13 @@ if let requestError = result.error as? RequestError {
 /*:
 # 🍴 The Interface Segregation Principle
 
-Make fine grained interfaces that are client specific. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
+Make fine grained interfaces that are client specific.
+
+No client should be forced to depend on methods it does not use. When an
+interface grows too large, its clients become coupled to methods they never
+call — and changes to those unrelated methods can force clients to recompile
+or redeploy. Splitting fat interfaces into smaller, role-specific protocols
+keeps dependencies narrow and cohesive.
 
 Example:
  */
@@ -253,7 +277,14 @@ crs8.land(on: barge)
 /*:
 # 🔝 The Dependency Inversion Principle
 
-Depend on abstractions, not on concretions. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
+Depend on abstractions, not on concretions.
+
+Two formal rules define this principle: (1) High-level modules should not
+depend on low-level modules — both should depend on abstractions. (2)
+Abstractions should not depend on details — details should depend on
+abstractions. By inverting the source-code dependency so that it points toward
+policies rather than mechanisms, high-level business logic becomes immune to
+changes in infrastructure and implementation details.
 
 Example:
 */

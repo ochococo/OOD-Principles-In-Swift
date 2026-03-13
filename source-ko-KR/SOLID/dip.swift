@@ -1,7 +1,13 @@
 /*:
 # 🔝 The Dependency Inversion Principle (의존관계 역전 원칙)
 
-구체화에 의존하지 말고 추상화에 의존하라. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
+구체화에 의존하지 말고 추상화에 의존하라.
+
+이 원칙을 정의하는 두 가지 규칙: (1) 고수준 모듈은 저수준 모듈에 의존해서는
+안 된다 — 둘 다 추상화에 의존해야 한다. (2) 추상화는 세부 사항에 의존해서는
+안 된다 — 세부 사항이 추상화에 의존해야 한다. 소스 코드 의존성을 메커니즘이 아닌
+정책 방향으로 역전시킴으로써, 고수준 비즈니스 로직은 인프라와 구현 세부 사항의
+변경으로부터 보호된다.
 
 예시:
 */

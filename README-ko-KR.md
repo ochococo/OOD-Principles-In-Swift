@@ -4,7 +4,7 @@
 
 A short cheat-sheet with Playground ([OOD-Principles-In-Swift-ko-KR.playground.zip](https://raw.githubusercontent.com/ochococo/OOD-Principles-In-Swift/master/OOD-Principles-In-Swift-ko-KR.playground.zip)).
 
-👷 Project maintained by: [@nsmeme](http://twitter.com/nsmeme) (Oktawian Chojnacki)
+👷 Project maintained by: [@oktawian](https://bsky.app/profile/oktawian.bsky.social) (Oktawian Chojnacki)
 
 🇰🇷 Translated by: [jwonyLee](https://github.com/jwonyLee) (JiWon Lee)
 
@@ -20,7 +20,14 @@ S.O.L.I.D.
 
 
 
-# 🔐 클래스에는 단 한 가지 변경 이유만 존재해야 한다. ([자세히](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
+# 🔐 The Single Responsibility Principle (단일 책임 원칙)
+
+클래스에는 단 한 가지 변경 이유만 존재해야 한다.
+
+보다 정제된 정의: 모듈은 하나의, 오직 하나의 액터(이해관계자)에 대해서만
+책임져야 한다. SRP는 "한 가지 일만 하라"는 것이 아니라, 같은 이유로 변경되는
+것들을 모으고 다른 이유로 변경되는 것들을 분리하는 것이다. 하나의 클래스가
+여러 액터를 담당하면, 한 액터가 요청한 변경이 다른 액터의 기대를 깨뜨릴 수 있다.
 
 예시:
 
@@ -94,7 +101,12 @@ doorCloser.execute()
 
 # ✋ The Open Closed Principle (개방 폐쇄 원칙)
 
-클래스의 동작을 수정하지 않고, 확장할 수 있어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgN2M5MTkwM2EtNWFkZC00ZTI3LWFjZTUtNTFhZGZiYmUzODc1&hl=en))
+클래스의 동작을 수정하지 않고, 확장할 수 있어야 한다.
+
+소프트웨어 엔티티(클래스, 모듈, 함수)는 확장에는 열려 있어야 하지만 수정에는
+닫혀 있어야 한다. 핵심 통찰은, 하나의 변경이 의존하는 모듈들에 연쇄적으로
+퍼지면 설계가 취약하다는 것이다. 추상화(프로토콜)에 의존함으로써 기존의 동작하는
+코드를 변경하지 않고 새로운 코드를 작성하여 새로운 동작을 추가할 수 있다.
 
 예시:
  
@@ -147,7 +159,13 @@ weapons.shoot()
 
 # 👥 The Liskov Substitution Principle (리스코프 치환 원칙)
 
-파생된 클래스는 기본 클래스를 대체할 수 있어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgNzAzZjA5ZmItNjU3NS00MzQ5LTkwYjMtMDJhNDU5ZTM0MTlh&hl=en))
+파생된 클래스는 기본 클래스를 대체할 수 있어야 한다.
+
+하위 타입은 상위 타입의 행위적 계약을 준수해야 한다: 사전 조건을 강화하거나,
+사후 조건을 약화하거나, 불변 조건을 위반해서는 안 된다. 기본 타입으로 작업하는
+호출자는 하위 타입을 알지 못한 채 사용할 수 있어야 하며, 프로그램은 여전히
+올바르게 동작해야 한다. 이 원칙을 위반하면 클라이언트 코드에 `if/else` 타입
+검사가 스며드는 취약한 계층 구조가 생긴다.
 
 예시:
 
@@ -194,7 +212,13 @@ if let requestError = result.error as? RequestError {
 
 # 🍴 The Interface Segregation Principle (인터페이스 분리 원칙)
 
-클라이언트별로 세분화된 인터페이스를 만들어야 한다. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
+클라이언트별로 세분화된 인터페이스를 만들어야 한다.
+
+클라이언트는 자신이 사용하지 않는 메서드에 의존하도록 강제되어서는 안 된다.
+인터페이스가 지나치게 커지면 클라이언트는 호출하지 않는 메서드에까지 결합되며,
+그 관련 없는 메서드가 변경되면 클라이언트도 재컴파일하거나 재배포해야 할 수 있다.
+비대한 인터페이스를 작고 역할별로 특화된 프로토콜로 분리하면 의존성을 좁고
+응집력 있게 유지할 수 있다.
 
 예시:
  
@@ -255,7 +279,13 @@ crs8.land(on: barge)
 
 # 🔝 The Dependency Inversion Principle (의존관계 역전 원칙)
 
-구체화에 의존하지 말고 추상화에 의존하라. ([자세히](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
+구체화에 의존하지 말고 추상화에 의존하라.
+
+이 원칙을 정의하는 두 가지 규칙: (1) 고수준 모듈은 저수준 모듈에 의존해서는
+안 된다 — 둘 다 추상화에 의존해야 한다. (2) 추상화는 세부 사항에 의존해서는
+안 된다 — 세부 사항이 추상화에 의존해야 한다. 소스 코드 의존성을 메커니즘이 아닌
+정책 방향으로 역전시킴으로써, 고수준 비즈니스 로직은 인프라와 구현 세부 사항의
+변경으로부터 보호된다.
 
 예시:
 
@@ -266,22 +296,23 @@ protocol TimeTraveling {
 }
 
 final class DeLorean: TimeTraveling {
-    func travelInTime(time: TimeInterval) -> String {
-        return "Used Flux Capacitor and travelled in time by: \(time)s"
-    }
+	func travelInTime(time: TimeInterval) -> String {
+		return "Used Flux Capacitor and travelled in time by: \(time)s"
+	}
 }
 
 final class EmmettBrown {
-    private let timeMachine: TimeTraveling
+	private let timeMachine: TimeTraveling
+
 
     // ⚠️ Emmet Brown은 `DeLorean`을 구체적인 클래스인 `DeLorean`이 아닌, `TimeTraveling` 장치로 받는다.
-    init(timeMachine: TimeTraveling) {
-        self.timeMachine = timeMachine
-    }
+	init(timeMachine: TimeTraveling) {
+		self.timeMachine = timeMachine
+	}
 
-    func travelInTime(time: TimeInterval) -> String {
-        return timeMachine.travelInTime(time: time)
-    }
+	func travelInTime(time: TimeInterval) -> String {
+		return timeMachine.travelInTime(time: time)
+	}
 }
 
 let timeMachine = DeLorean()

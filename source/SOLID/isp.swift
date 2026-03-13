@@ -1,7 +1,13 @@
 /*:
 # 🍴 The Interface Segregation Principle
 
-Make fine grained interfaces that are client specific. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgOTViYjJhYzMtMzYxMC00MzFjLWJjMzYtOGJiMDc5N2JkYmJi&hl=en))
+Make fine grained interfaces that are client specific.
+
+No client should be forced to depend on methods it does not use. When an
+interface grows too large, its clients become coupled to methods they never
+call — and changes to those unrelated methods can force clients to recompile
+or redeploy. Splitting fat interfaces into smaller, role-specific protocols
+keeps dependencies narrow and cohesive.
 
 Example:
  */

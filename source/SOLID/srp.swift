@@ -1,7 +1,13 @@
 /*:
 # 🔐 The Single Responsibility Principle
 
-A class should have one, and only one, reason to change. ([read more](https://docs.google.com/open?id=0ByOwmqah_nuGNHEtcU5OekdDMkk))
+A class should have one, and only one, reason to change.
+
+A refined formulation: a module should be responsible to one, and only one,
+actor (stakeholder). SRP is not about "doing one thing" — it is about gathering
+together the things that change for the same reasons and separating those that
+change for different reasons. When a class serves multiple actors, changes
+requested by one actor risk breaking the expectations of another.
 
 Example:
 */

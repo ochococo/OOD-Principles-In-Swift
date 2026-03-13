@@ -1,7 +1,14 @@
 /*:
 # 🔝 The Dependency Inversion Principle
 
-Depend on abstractions, not on concretions. ([read more](http://docs.google.com/a/cleancoder.com/viewer?a=v&pid=explorer&chrome=true&srcid=0BwhCYaYDn8EgMjdlMWIzNGUtZTQ0NC00ZjQ5LTkwYzQtZjRhMDRlNTQ3ZGMz&hl=en))
+Depend on abstractions, not on concretions.
+
+Two formal rules define this principle: (1) High-level modules should not
+depend on low-level modules — both should depend on abstractions. (2)
+Abstractions should not depend on details — details should depend on
+abstractions. By inverting the source-code dependency so that it points toward
+policies rather than mechanisms, high-level business logic becomes immune to
+changes in infrastructure and implementation details.
 
 Example:
 */
