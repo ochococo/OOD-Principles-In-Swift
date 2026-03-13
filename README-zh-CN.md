@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Swift 5 中的面向对象设计原则"
+lang: zh-CN
+permalink: /zh-CN
+---
 
 Swift 5 中的面向对象设计原则
 =========================

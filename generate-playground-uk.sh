@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "Принципи об'єктно-орієнтованого проєктування у Swift 5"
+lang: uk
+permalink: /uk
+---
+FRONTMATTER
 	combineMarkdown source-uk/$1 $2
 	cat source-uk/footer.md  >> $2
 }

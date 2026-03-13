@@ -52,3 +52,16 @@ blockquote {
     padding-left: 2em;
     border-left: 10px solid #eee;
 }
+
+pre {
+    background-color: #f8f8f8;
+    padding: 1em;
+    overflow-x: auto;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}

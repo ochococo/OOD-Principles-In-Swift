@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Principios de diseño orientado a objetos en Swift 5"
+lang: es
+permalink: /es
+---
 
 Principios de diseño orientado a objetos en Swift 5
 =========================

@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "The Principles of OOD in Swift 5"
+lang: en
+permalink: /
+---
+FRONTMATTER
 	combineMarkdown source/$1 $2
 	cat source/footer.md  >> $2
 }

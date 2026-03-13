@@ -1,0 +1,9 @@
+<nav class="lang-switcher" aria-label="Language">
+    {% for lang in site.languages %}
+        {% if page.lang == lang.code %}
+            <span class="active">{{ lang.name }}</span>
+        {% else %}
+            <a href="{{ lang.path | relative_url }}">{{ lang.name }}</a>
+        {% endif %}
+    {% endfor %}
+</nav>

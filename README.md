@@ -1,4 +1,9 @@
-
+---
+layout: default
+title: "The Principles of OOD in Swift 5"
+lang: en
+permalink: /
+---
 
 The Principles of OOD in Swift 5
 ================================

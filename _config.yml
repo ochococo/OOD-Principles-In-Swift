@@ -1,0 +1,56 @@
+title: "OOD Principles in Swift"
+description: "A short cheat-sheet of SOLID principles with Swift 5 examples"
+url: "https://ochococo.github.io"
+baseurl: "/OOD-Principles-In-Swift"
+
+markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
+
+exclude:
+  - "*.sh"
+  - "*.zip"
+  - "*.playground"
+  - "source*"
+  - LICENSE
+  - .gitignore
+  - .github
+  - .claude
+
+languages:
+  - code: "en"
+    name: "English"
+    path: "/"
+  - code: "ko-KR"
+    name: "한국어"
+    path: "/ko-KR"
+  - code: "pl"
+    name: "Polski"
+    path: "/pl"
+  - code: "zh-CN"
+    name: "简体中文"
+    path: "/zh-CN"
+  - code: "pt-BR"
+    name: "Português (BR)"
+    path: "/pt-BR"
+  - code: "ja"
+    name: "日本語"
+    path: "/ja"
+  - code: "es"
+    name: "Español"
+    path: "/es"
+  - code: "uk"
+    name: "Українська"
+    path: "/uk"
+  - code: "de"
+    name: "Deutsch"
+    path: "/de"
+  - code: "fr"
+    name: "Français"
+    path: "/fr"
+  - code: "hi"
+    name: "हिन्दी"
+    path: "/hi"
+  - code: "tr"
+    name: "Türkçe"
+    path: "/tr"

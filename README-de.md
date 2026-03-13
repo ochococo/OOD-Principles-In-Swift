@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Prinzipien des objektorientierten Designs in Swift 5"
+lang: de
+permalink: /de
+---
 
 Prinzipien des objektorientierten Designs in Swift 5
 =========================

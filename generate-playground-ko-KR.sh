@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "객체지향 설계 원칙 in Swift 5"
+lang: ko-KR
+permalink: /ko-KR
+---
+FRONTMATTER
 	combineMarkdown source-ko-KR/$1 $2
 	cat source-ko-KR/footer.md  >> $2
 }

@@ -1,3 +1,9 @@
+---
+layout: default
+title: "객체지향 설계 원칙 in Swift 5"
+lang: ko-KR
+permalink: /ko-KR
+---
 
 객체지향 설계 원칙 in Swift 5
 =========================

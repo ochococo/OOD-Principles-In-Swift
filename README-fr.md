@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Principes de conception orientee objet en Swift 5"
+lang: fr
+permalink: /fr
+---
 
 Principes de conception orientee objet en Swift 5
 =========================

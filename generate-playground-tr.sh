@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "Swift 5'te Nesne Yonelimli Tasarim Ilkeleri"
+lang: tr
+permalink: /tr
+---
+FRONTMATTER
 	combineMarkdown source-tr/$1 $2
 	cat source-tr/footer.md  >> $2
 }

@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "Swift 5 におけるオブジェクト指向設計原則"
+lang: ja
+permalink: /ja
+---
+FRONTMATTER
 	combineMarkdown source-ja/$1 $2
 	cat source-ja/footer.md  >> $2
 }

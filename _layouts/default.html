@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} - {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/stylesheet.css' | relative_url }}">
+    <style>
+        .lang-switcher {
+            padding: 0.8em 0;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1em;
+            font-size: 0.85em;
+        }
+        .lang-switcher a {
+            margin-right: 0.8em;
+            border-bottom: none;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #333;
+        }
+        .container {
+            max-width: 48em;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% include lang-switcher.html %}
+        {{ content }}
+    </div>
+</body>
+</html>

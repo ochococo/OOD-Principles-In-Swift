@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Swift 5 におけるオブジェクト指向設計原則"
+lang: ja
+permalink: /ja
+---
 
 Swift 5 におけるオブジェクト指向設計原則
 =========================

@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Swift 5'te Nesne Yonelimli Tasarim Ilkeleri"
+lang: tr
+permalink: /tr
+---
 
 Swift 5'te Nesne Yonelimli Tasarim Ilkeleri
 =========================

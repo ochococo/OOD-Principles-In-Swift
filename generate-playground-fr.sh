@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "Principes de conception orientee objet en Swift 5"
+lang: fr
+permalink: /fr
+---
+FRONTMATTER
 	combineMarkdown source-fr/$1 $2
 	cat source-fr/footer.md  >> $2
 }

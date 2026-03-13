@@ -1,3 +1,9 @@
+---
+layout: default
+title: "Zasady projektowania obiektowego w Swift 5"
+lang: pl
+permalink: /pl
+---
 
 Zasady projektowania obiektowego w Swift 5
 =========================

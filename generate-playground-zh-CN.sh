@@ -46,7 +46,14 @@ combineMarkdown() {
 }
 
 readme() {
-	echo "" > $2
+	cat > $2 <<'FRONTMATTER'
+---
+layout: default
+title: "Swift 5 中的面向对象设计原则"
+lang: zh-CN
+permalink: /zh-CN
+---
+FRONTMATTER
 	combineMarkdown source-zh-CN/$1 $2
 	cat source-zh-CN/footer.md  >> $2
 }
